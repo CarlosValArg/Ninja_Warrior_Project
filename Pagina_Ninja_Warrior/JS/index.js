@@ -1,108 +1,37 @@
-//Validaciones en formulario//
-document.addEventListener("DOMContentLoaded", () => {
-  const form = document.querySelector(".form");
-
-  form.addEventListener("submit", (event) => {
-    const nombreField = document.getElementById("nombre");
-    const apellidosField = document.getElementById("apellidos");
-    const edadField = document.getElementById("edad");
-    const emailField = document.getElementById("email");
-    const mensajeField = document.getElementById("mensaje");
-
-    const nombre = nombreField.value.trim();
-    const apellidos = apellidosField.value.trim();
-    const edad = edadField.value.trim();
-    const email = emailField.value.trim();
-    const mensaje = mensajeField.value.trim();
-
-    let isValid = true;
-
-    const errorMessages = form.querySelectorAll(".error-message");
-    errorMessages.forEach((msg) => msg.remove());
-
-    nombreField.style.border = "1px solid #ccc";
-    apellidosField.style.border = "1px solid #ccc";
-    edadField.style.border = "1px solid #ccc";
-    emailField.style.border = "1px solid #ccc";
-    mensajeField.style.border = "1px solid #ccc";
-
-    const showError = (field, message) => {
-      field.style.border = "2px solid red";
-      const error = document.createElement("span");
-      error.className = "error-message";
-      error.style.color = "red";
-      error.style.fontSize = "14px";
-      error.textContent = message;
-      field.parentNode.insertBefore(error, field.nextSibling);
-    };
-
-    if (nombre.length < 3) {
-      showError(nombreField, "El nombre debe tener al menos 3 caracteres.");
-      isValid = false;
-    }
-
-    if (apellidos.length < 3) {
-      showError(apellidosField, "Apellido inválido");
-      isValid = false;
-    }
-
-    if (!/^\d+$/.test(edad) || parseInt(edad, 10) <= 0) {
-      showError(edadField, "Edad inválida");
-      isValid = false;
-    }
-
-    if (!/^[^@]+@[^@]+\.[^@]+$/.test(email)) {
-      showError(emailField, "Correo electrónico inválido");
-      isValid = false;
-    }
-
-    if (mensaje.length < 10) {
-      showError(mensajeField, "El mensaje debe contener al menos 10 caracteres.");
-      isValid = false;
-    }
-
-    if (!isValid) {
-      event.preventDefault();
-    } else {
-      alert("Formulario enviado correctamente.");
-    }
-  });
-});
-
 //Carrusel en contenedor de contenido//
 document.addEventListener("DOMContentLoaded", function () {
-  const carouselTrack = document.querySelector(".carousel-track");
-  const images = Array.from(document.querySelectorAll(".carousel-track img"));
-  const totalImages = images.length;
-  const imagesPerView = 6;
-  const transitionSpeed = 500;
-  let currentIndex = imagesPerView;
+  const seguimientoCarrusel = document.querySelector(".carousel-track");
+  const imagenes = Array.from(document.querySelectorAll(".carousel-track img"));
+  const totalImagenes = imagenes.length;
+  const imagenesPorVista = 6;
+  const velocidadTransicion = 500;
+  let currentIndex = imagenesPorVista;
 
-  images.slice(0, imagesPerView).forEach(img => {
-    const clone = img.cloneNode(true);
-    carouselTrack.appendChild(clone);
+  imagenes.slice(0, imagenesPorVista).forEach(img => {
+    const clonar = img.cloneNode(true);
+    seguimientoCarrusel.appendChild(clonar);
   });
-  images.slice(-imagesPerView).forEach(img => {
-    const clone = img.cloneNode(true);
-    carouselTrack.insertBefore(clone, carouselTrack.firstChild);
+  imagenes.slice(-imagenesPorVista).forEach(img => {
+    const clonar = img.cloneNode(true);
+    seguimientoCarrusel.insertBefore(clonar, seguimientoCarrusel.firstChild);
   });
 
   function updateCarousel() {
-    const imageHeight = images[0].clientHeight;
-    carouselTrack.style.transition = "transform 0.5s ease-in-out";
-    carouselTrack.style.transform = `translateY(-${currentIndex * imageHeight}px)`;
+    const imageHeight = imagenes[0].clientHeight;
+    seguimientoCarrusel.style.transicion = "transform 0.5s ease-in-out";
+    seguimientoCarrusel.style.transform = `translateY(-${currentIndex * imageHeight}px)`;
   }
 
   function moveNext() {
     currentIndex++;
     updateCarousel();
 
-    if (currentIndex >= totalImages + imagesPerView) {
+    if (currentIndex >= totalImagenes + imagenesPorVista) {
       setTimeout(() => {
-        carouselTrack.style.transition = "none";
-        currentIndex = imagesPerView;
+        seguimientoCarrusel.style.transicion = "none";
+        currentIndex = imagenesPorVista;
         updateCarousel();
-      }, transitionSpeed);
+      }, velocidadTransicion);
     }
   }
 
@@ -112,10 +41,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (currentIndex <= 0) {
       setTimeout(() => {
-        carouselTrack.style.transition = "none";
-        currentIndex = totalImages;
+        seguimientoCarrusel.style.transicion = "none";
+        currentIndex = totalImagenes;
         updateCarousel();
-      }, transitionSpeed);
+      }, velocidadTransicion);
     }
   }
 
@@ -125,7 +54,7 @@ document.addEventListener("DOMContentLoaded", function () {
   window.addEventListener("resize", updateCarousel);
 
   setTimeout(() => {
-    carouselTrack.style.transition = "none";
+    seguimientoCarrusel.style.transicion = "none";
     updateCarousel();
   }, 50);
 });
@@ -157,25 +86,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
   document.querySelectorAll(".lista-temporadas li").forEach((item) => {
     item.addEventListener("click", () => {
-      const year = item.getAttribute("data-year"); // Obtiene el año desde el atributo data-year
+      const year = item.getAttribute("data-year");
       if (year && temporadasInfo[year]) {
         modalTitle.textContent = `Temporada ${year}`;
         modalDescription.textContent = temporadasInfo[year];
-        modal.style.display = "block"; // Muestra el modal
+        modal.style.display = "block";
       }
     });
   });
 
-  // Cerrar modal al hacer clic en la "X"
   closeModal.addEventListener("click", () => {
     modal.style.display = "none";
   });
 
-  // Cerrar modal si el usuario hace clic fuera del contenido
   window.addEventListener("click", (e) => {
     if (e.target === modal) {
       modal.style.display = "none";
     }
   });
 });
-

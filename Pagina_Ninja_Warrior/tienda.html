@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+    content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+  <title>Tienda de productos Ninja Warrior</title>
+  <link rel="shortcut icon" href="Assets/ANW.jpg" type="image/x-icon" />
+  <link rel="stylesheet" href="Assets/styles/tienda.css">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@400;700&display=swap"
+    rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet" />
+</head>
+
+<body>
+  <nav>
+    <div class="logo">
+      <img src="Assets/ANW.jpg" alt="Logo Ninja Warrior" />
+    </div>
+    <input type="checkbox" id="toggle">
+    <label class="hamburguesa" for="toggle">
+      <span></span>
+      <span></span>
+      <span></span>
+    </label>
+    <div class="menu">
+      <a href="index.html">Inicio</a>
+      <a href="#temporadas">Temporadas</a>
+      <a href="#etapas">Etapas</a>
+      <a href="formulario.html">Contacto</a>
+      <a href="comunidad.html">Comunidad</a>
+      <a href="tienda.html">Tienda</a>
+    </div>
+  </nav>
+
+  <div class="header">
+    <h1>Tienda de Productos Ninja Warrior</h1>
+  </div>
+
+  <div class="card-container">
+    <!-- Card 1 -->
+    <div class="card">
+      <img src="Assets/SudaderaNW.webp" alt="Sudadera Negra Hombre Ninja Warrior">
+      <img class="hover-image" src="Assets/SudaderaGrisNW.webp" alt="Sudadera Gris Hombre Ninja Warrior">
+      <div class="info-container">
+        <h3>Sudadera Hombre Ninja Warrior</h3>
+        <p>$1250.00 MXN</p>
+        <button class="add-to-cart" data-name="Sudadera Hombre Ninja Warrior" data-price="1250">
+          <i class="fas fa-cart-plus"></i> Añadir al carrito
+        </button>
+      </div>
+    </div>
+    <!-- Card 2 -->
+    <div class="card">
+      <img src="Assets/PlayeraNW.webp" alt="Playera Hombre Ninja Warrior">
+      <img class="hover-image" src="Assets/PlayeraZoomNW.webp" alt="Playera Hombre Ninja Warrior Zoom">
+      <div class="info-container">
+        <h3>Playera Hombre Ninja Warrior</h3>
+        <p>$925.50 MXN</p>
+        <button class="add-to-cart" data-name="Playera Hombre Ninja Warrior" data-price="925.5">
+          <i class="fas fa-cart-plus"></i> Añadir al carrito
+        </button>
+      </div>
+    </div>
+    <!-- Card 3 -->
+    <div class="card">
+      <img src="Assets/MochilaNW.webp" alt="Mochila Ninja Warrior">
+      <img class="hover-image" src="Assets/MochilaAzulNW.webp" alt="Mochila Azul Ninja Warrior">
+      <div class="info-container">
+        <h3>Mochila Ninja Warrior</h3>
+        <p>$832.75 MXN</p>
+        <button class="add-to-cart" data-name="Mochila Ninja Warrior" data-price="832.75">
+          <i class="fas fa-cart-plus"></i> Añadir al carrito
+        </button>
+      </div>
+    </div>
+    <!-- Card 4 -->
+    <div class="card">
+      <img class="main-image" src="Assets/FundaNW.webp" alt="Funda para iPhone Ninja Warrior">
+      <img class="hover-image" src="Assets/FundaDesplegadaNW.webp" alt="Funda Desplegada iPhone Ninja Warrior">
+      <div class="info-container">
+        <h3>Funda para iPhone Ninja Warrior</h3>
+        <p>$199.00 MXN</p>
+        <button class="add-to-cart" data-name="Funda para iPhone Ninja Warrior" data-price="199">
+          <i class="fas fa-cart-plus"></i> Añadir al carrito
+        </button>
+      </div>
+    </div>
+    <!-- Card 5 -->
+    <div class="card">
+      <img src="Assets/TermoNW.webp" alt="Botella de Agua Ninja Warrior">
+      <img class="hover-image" src="Assets/TermoReversoNW.webp" alt="Reverso Botella de Agua Ninja Warrior">
+      <div class="info-container">
+        <h3>Botella de Agua Ninja Warrior</h3>
+        <p>$222.00 MXN</p>
+        <button class="add-to-cart" data-name="Botella de Agua Ninja Warrior" data-price="222">
+          <i class="fas fa-cart-plus"></i> Añadir al carrito
+        </button>
+      </div>
+    </div>
+    <!-- Card 6 -->
+    <div class="card">
+      <img class="main-image" src="Assets/PlayeraInfantilNW.webp" alt="Playera Infantil Ninja Warrior">
+      <img class="hover-image" src="Assets/PlayeraInfantilReversoNW.webp" alt="Reverso Playera Infantil Ninja Warrior">
+      <div class="info-container">
+        <h3>Playera Infantil Ninja Warrior</h3>
+        <p>$1045.30 MXN</p>
+        <button class="add-to-cart" data-name="Playera Infantil Ninja Warrior" data-price="1045.3">
+          <i class="fas fa-cart-plus"></i> Añadir al carrito
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div id="cart-modal" class="cart-modal hidden">
+    <div class="cart-content">
+      <h2>Carrito de Compras</h2>
+      <table class="cart-items">
+        <thead>
+          <tr>
+            <th>Producto</th>
+            <th>Cantidad</th>
+            <th>Precio</th>
+            <th>Quitar</th>
+          </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+      </table>
+      <div class="cart-total">
+        <p>Total: <span id="cart-total">$0.00</span></p>
+      </div>
+      <button id="close-cart">Cerrar</button>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <h3>Enlaces</h3>
+      <ul>
+        <li>
+          <a href="https://www.americanninjawarriornation.com/" target="_blank"
+            aria-label="Ir al sitio oficial de American Ninja Warrior Nation">Sitio oficial</a>
+        </li>
+        <li>
+          <a href="https://americanninjawarrioradventurepark.com/" target="_blank"
+            aria-label="Ir al Adventure Park de American Ninja Warrior">Adventure Park</a>
+        </li>
+        <li>
+          <a href="https://www.nbcstore.com/pages/american-ninja-warrior" target="_blank"
+            aria-label="Ir a la tienda online de American Ninja Warrior">Tienda Online</a>
+        </li>
+      </ul>
+      <div class="social-icons">
+        <a href="https://www.youtube.com/@NinjaWarrior" target="_blank" aria-label="YouTube">
+          <i class="fab fa-youtube"></i>
+        </a>
+        <a href="https://www.facebook.com/anwnation/" target="_blank" aria-label="Facebook">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="https://www.instagram.com/ninjawarrior/" target="_blank" aria-label="Instagram">
+          <i class="fab fa-instagram"></i>
+        </a>
+        <a href="https://x.com/ninjawarrior?lang=en&mx=2" target="_blank" aria-label="X">
+          <i class="fab fa-x"></i>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="JS/tienda.js" defer></script>
+</body>
+
+</html>
