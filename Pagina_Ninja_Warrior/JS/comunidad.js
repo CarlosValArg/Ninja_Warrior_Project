@@ -1,32 +1,29 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const postsContainer = document.getElementById("posts-container");
+    const contenedorPosts = document.getElementById("contenedorPosts");
   
     const fetchRedditPosts = async () => {
       const subreddit = "ANW";
       const url = `https://www.reddit.com/r/${subreddit}/new.json?limit=10`;
   
       try {
-        const response = await fetch(url);
-        const data = await response.json();
+        const respuesta = await fetch(url);
+        const datos = await respuesta.json();
   
-        displayPosts(data.data.children);
+        displayPosts(datos.data.children);
       } catch (error) {
         console.error("Error al obtener las publicaciones de Reddit:", error);
-        postsContainer.innerHTML = `<p>Ocurrió un error al cargar las publicaciones. Intenta nuevamente más tarde.</p>`;
+        contenedorPosts.innerHTML = `<p>Ocurrió un error al cargar las publicaciones. Intenta nuevamente más tarde.</p>`;
       }
     };
   
-    // Función para mostrar las publicaciones en el HTML
     const displayPosts = (posts) => {
-      postsContainer.innerHTML = ""; // Limpiar contenedor
+      contenedorPosts.innerHTML = "";
   
       posts.forEach((post) => {
         const { title, url, author, created_utc } = post.data;
   
-        // Formatear la fecha
         const date = new Date(created_utc * 1000).toLocaleDateString();
   
-        // Crear estructura HTML para cada publicación
         const postElement = document.createElement("article");
         postElement.className = "reddit-post";
         postElement.innerHTML = `
@@ -34,10 +31,9 @@ document.addEventListener("DOMContentLoaded", () => {
           <p>Publicado por <strong>${author}</strong> el ${date}</p>
         `;
   
-        postsContainer.appendChild(postElement);
+        contenedorPosts.appendChild(postElement);
       });
     };
   
-    // Llamar a la función para cargar las publicaciones
     fetchRedditPosts();
   });  

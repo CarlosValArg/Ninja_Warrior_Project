@@ -33,82 +33,57 @@ nav {
     justify-content: space-between;
     align-items: center;
     position: relative;
-
+  
     .logo {
-        display: flex;
-        align-items: center;
-
-        img {
-            width: 40px;
-            height: auto;
-            margin-right: 10px;
-        }
+      display: flex;
+      align-items: center;
+  
+      img {
+        width: 40px;
+        height: auto;
+        margin-right: 10px;
+      }
     }
-
+  
     .menu {
-        display: flex;
-        gap: 15px;
-
-        a {
-            padding: 12px 20px;
-            color: white;
-            text-decoration: none;
-            transition: background-color 0.3s;
-            border-radius: 4px;
-
-            &:hover {
-                background-color: $accent-color;
-            }
+      display: flex;
+      gap: 15px;
+  
+      a {
+        padding: 12px 20px;
+        color: white;
+        text-decoration: none;
+        transition: background-color 0.3s;
+        border-radius: 4px;
+  
+        &:hover {
+          background-color: $accent-color;
         }
+      }
     }
-
+  
     .hamburguesa {
-        display: none;
-        cursor: pointer;
-        flex-direction: column;
-        gap: 5px;
-
-        span {
-            display: block;
-            width: 30px;
-            height: 4px;
-            background-color: white;
-            border-radius: 2px;
-            transition: all 0.3s ease-in-out;
-        }
+      display: none;
+      cursor: pointer;
+      flex-direction: column;
+      gap: 5px;
+  
+      span {
+        display: block;
+        width: 30px;
+        height: 4px;
+        background-color: white;
+        border-radius: 2px;
+        transition: all 0.3s ease-in-out;
+      }
     }
-
+  
     #toggle {
-        display: none;
+      display: none;
     }
+  }
 
-    #toggle:checked~.menu {
-        display: flex;
-        flex-direction: column;
-        position: absolute;
-        top: 60px;
-        right: 20px;
-        background-color: $primary-color;
-        width: 200px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-        border-radius: 8px;
-        z-index: 10;
-    }
-
-    #toggle:checked+.hamburguesa span:nth-child(1) {
-        transform: rotate(45deg) translate(5px, 5px);
-    }
-
-    #toggle:checked+.hamburguesa span:nth-child(2) {
-        opacity: 0;
-    }
-
-    #toggle:checked+.hamburguesa span:nth-child(3) {
-        transform: rotate(-45deg) translate(5px, -5px);
-    }
-}
-
-#main-header {
+#mainHeader {
     background: $accent-color;
     color: $text-color;
     padding: 10px 20px;
@@ -122,7 +97,7 @@ nav {
 main {
     padding: 20px;
 
-    #reddit-posts {
+    #postsReddit {
         background: $background-color;
         padding: 20px;
         border-radius: 5px;
@@ -203,112 +178,50 @@ main {
 
 @media screen and (max-width: 412px) {
     nav {
-        .menu {
-            display: none;
-            flex-direction: column;
-            background-color: $accent-color;
-            position: absolute;
-            top: 60px;
-            right: 0;
-            width: 90%;
-            margin: 0 auto;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-            transform: scale(0.9);
-            opacity: 0;
-            transition: all 0.3s ease-in-out;
-
-            a {
-                padding: 15px 20px;
-                text-align: center;
-                font-size: 16px;
-                color: white;
-                text-decoration: none;
-                border: 1px solid rgba(255, 255, 255, 0.2);
-                border-radius: 5px;
-                margin: 5px 10px;
-                cursor: pointer;
-                background-color: $accent-color;
-                transition: background-color 0.3s ease, color 0.3s ease;
-
-                &.selected {
-                    background-color: $primary-color;
-                    color: white;
-                }
-
-                &:hover {
-                    background-color: darken($primary-color, 10%);
-                    color: #fff;
-                    width: 100%;
-                }
-            }
-
-            a:not(:last-child) {
-                border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-            }
-        }
-
-        #toggle:checked+.hamburguesa+.menu {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            transform: scale(1);
-            opacity: 1;
-            width: 90%;
-            margin: 0 auto;
-            position: absolute;
-            top: 60px;
-            background-color: $accent-color;
-            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
-            border-radius: 10px;
-
-            a.selected {
-                background-color: $primary-color;
-                color: white;
-            }
-        }
-
         .hamburguesa {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            height: 20px;
-            cursor: pointer;
-            z-index: 10;
-
-            span {
-                display: block;
-                width: 25px;
-                height: 3px;
-                background-color: white;
-                border-radius: 3px;
-                transition: all 0.3s ease;
-
-                &:nth-child(1) {
-                    transform-origin: top left;
-                }
-
-                &:nth-child(3) {
-                    transform-origin: bottom left;
-                }
-            }
-
-            #toggle:checked+& {
-                span:nth-child(1) {
-                    transform: rotate(45deg) translate(5px, 5px);
-                }
-
-                span:nth-child(2) {
-                    opacity: 0;
-                }
-
-                span:nth-child(3) {
-                    transform: rotate(-45deg) translate(5px, -5px);
-                }
-            }
+          display: flex;
         }
-    }
+    
+        .menu {
+          display: none;
+          flex-direction: column;
+          position: absolute;
+          top: 60px;
+          right: 20px;
+          background-color: $accent-color;
+          width: 90%;
+          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+          border: 1px solid $text-color;
+          border-radius: 8px;
+          z-index: 10;
+    
+          a {
+            padding: 10px 15px;
+            border-bottom: 1px solid $text-color;
+            text-align: center;
+    
+            &:last-child {
+              border-bottom: none;
+            }
+          }
+        }
+    
+        #toggle:checked~.menu {
+          display: flex;
+        }
+    
+        #toggle:checked+.hamburguesa span:nth-child(1) {
+          transform: rotate(90deg) translate(7px, -7px);
+        }
+    
+        #toggle:checked+.hamburguesa span:nth-child(2) {
+          transform: rotate(90deg);
+        }
+    
+        #toggle:checked+.hamburguesa span:nth-child(3) {
+          transform: rotate(90deg) translate(-7px, 7px);
+        }
+      }
 
     .footer {
         ul {

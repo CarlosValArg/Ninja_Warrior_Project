@@ -1,15 +1,13 @@
 document.addEventListener("DOMContentLoaded", () => {
     const cartModal = document.getElementById("cart-modal");
-    const cartItemsList = document.querySelector(".cart-items");
     const cartTotal = document.getElementById("cart-total");
     const closeCartButton = document.getElementById("close-cart");
 
     let cart = [];
 
-    // Actualizar el carrito en el modal
     function updateCart() {
         const cartTableBody = document.querySelector(".cart-items tbody");
-        cartTableBody.innerHTML = ""; // Limpiar el contenido actual
+        cartTableBody.innerHTML = "";
         let total = 0;
 
         cart.forEach((item, index) => {
@@ -28,14 +26,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
         cartTotal.textContent = `$${total.toFixed(2)}`;
 
-        // Añadir eventos a botones de quitar
         const removeButtons = document.querySelectorAll(".remove-item");
         removeButtons.forEach(button => {
             button.addEventListener("click", removeItemFromCart);
         });
     }
 
-    // Añadir producto al carrito
     function addToCart(event) {
         const button = event.target.closest(".add-to-cart");
         if (!button) return;
@@ -51,12 +47,11 @@ document.addEventListener("DOMContentLoaded", () => {
             cart.push({ name, price, quantity: 1 });
         }
 
-        console.log(`Producto añadido: ${name}, Precio: ${price}`); // Depuración
+        console.log(`Producto añadido: ${name}, Precio: ${price}`);
         updateCart();
         cartModal.classList.remove("hidden");
     }
 
-    // Quitar producto del carrito
     function removeItemFromCart(event) {
         const index = event.target.dataset.index;
         cart.splice(index, 1);
@@ -67,12 +62,10 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // Cerrar el modal del carrito
     closeCartButton.addEventListener("click", () => {
         cartModal.classList.add("hidden");
     });
 
-    // Delegar eventos de clic en los botones de añadir al carrito
     document.querySelector(".card-container").addEventListener("click", (event) => {
         if (event.target.classList.contains("add-to-cart") || event.target.closest(".add-to-cart")) {
             addToCart(event);

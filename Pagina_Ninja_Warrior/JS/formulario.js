@@ -1,9 +1,9 @@
 document.addEventListener("DOMContentLoaded", () => {
     const form = document.querySelector(".form");
   
-    const enviarFormulario = async (formData, onSuccess, onError) => {
+    const enviarFormulario = async (formData, conExito, conError) => {
       try {
-        const response = await fetch("https://formspree.io/f/xyzkybyv", {
+        const respuesta = await fetch("https://formspree.io/f/xyzkybyv", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -11,13 +11,13 @@ document.addEventListener("DOMContentLoaded", () => {
           body: JSON.stringify(formData),
         });
   
-        if (response.ok) {
-          onSuccess();
+        if (respuesta.ok) {
+          conExito();
         } else {
-          onError("Hubo un error al enviar el formulario. Intenta de nuevo más tarde.");
+          conError("Hubo un error al enviar el formulario. Intenta de nuevo más tarde.");
         }
       } catch (error) {
-        onError("Error al conectar con el servidor. Revisa tu conexión a internet.");
+        conError("Error al conectar con el servidor. Revisa tu conexión a internet.");
       }
     };
   
@@ -38,8 +38,8 @@ document.addEventListener("DOMContentLoaded", () => {
   
       let isValid = true;
   
-      const errorMessages = form.querySelectorAll(".error-message");
-      errorMessages.forEach((msg) => msg.remove());
+      const mensajesError = form.querySelectorAll(".error-message");
+      mensajesError.forEach((msg) => msg.remove());
   
       const resetBorder = (field) => (field.style.border = "1px solid #ccc");
       [nombreField, apellidosField, edadField, emailField, mensajeField].forEach(resetBorder);
@@ -97,8 +97,8 @@ document.addEventListener("DOMContentLoaded", () => {
           alert("Formulario enviado correctamente. ¡Gracias por tu mensaje!");
           form.reset();
         },
-        (errorMessage) => {
-          alert(errorMessage);
+        (mensajeError) => {
+          alert(mensajeError);
         }
       );
     });

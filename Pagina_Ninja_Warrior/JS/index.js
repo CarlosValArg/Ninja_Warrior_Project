@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const totalImagenes = imagenes.length;
   const imagenesPorVista = 6;
   const velocidadTransicion = 500;
-  let currentIndex = imagenesPorVista;
+  let indiceActual = imagenesPorVista;
 
   imagenes.slice(0, imagenesPorVista).forEach(img => {
     const clonar = img.cloneNode(true);
@@ -16,34 +16,34 @@ document.addEventListener("DOMContentLoaded", function () {
     seguimientoCarrusel.insertBefore(clonar, seguimientoCarrusel.firstChild);
   });
 
-  function updateCarousel() {
+  function actualizarCarrusel() {
     const imageHeight = imagenes[0].clientHeight;
     seguimientoCarrusel.style.transicion = "transform 0.5s ease-in-out";
-    seguimientoCarrusel.style.transform = `translateY(-${currentIndex * imageHeight}px)`;
+    seguimientoCarrusel.style.transform = `translateY(-${indiceActual * imageHeight}px)`;
   }
 
   function moveNext() {
-    currentIndex++;
-    updateCarousel();
+    indiceActual++;
+    actualizarCarrusel();
 
-    if (currentIndex >= totalImagenes + imagenesPorVista) {
+    if (indiceActual >= totalImagenes + imagenesPorVista) {
       setTimeout(() => {
         seguimientoCarrusel.style.transicion = "none";
-        currentIndex = imagenesPorVista;
-        updateCarousel();
+        indiceActual = imagenesPorVista;
+        actualizarCarrusel();
       }, velocidadTransicion);
     }
   }
 
   function movePrev() {
-    currentIndex--;
-    updateCarousel();
+    indiceActual--;
+    actualizarCarrusel();
 
-    if (currentIndex <= 0) {
+    if (indiceActual <= 0) {
       setTimeout(() => {
         seguimientoCarrusel.style.transicion = "none";
-        currentIndex = totalImagenes;
-        updateCarousel();
+        indiceActual = totalImagenes;
+        actualizarCarrusel();
       }, velocidadTransicion);
     }
   }
@@ -51,14 +51,15 @@ document.addEventListener("DOMContentLoaded", function () {
   document.querySelector(".next").addEventListener("click", moveNext);
   document.querySelector(".prev").addEventListener("click", movePrev);
 
-  window.addEventListener("resize", updateCarousel);
+  window.addEventListener("resize", actualizarCarrusel);
 
   setTimeout(() => {
     seguimientoCarrusel.style.transicion = "none";
-    updateCarousel();
+    actualizarCarrusel();
   }, 50);
 });
 
+//Modales para las temporadas//
 document.addEventListener("DOMContentLoaded", () => {
   const modal = document.getElementById("modal");
   const modalTitle = document.getElementById("modal-title");
