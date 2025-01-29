@@ -1,0 +1,14 @@
+{
+  "name": "pagina_ninja_warrior",
+  "version": "1.0.0",
+  "description": "Testings Ninja Warrior Selenium",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha ./test/*.spec.js --no-timeouts"
+  },
+  "author": "Carlos Alberto Valencia Argueta",
+  "license": "ISC",
+  "dependencies": {
+    "selenium-webdriver": "^4.28.1"
+  }
+}

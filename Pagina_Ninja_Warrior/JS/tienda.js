@@ -11,17 +11,21 @@ document.addEventListener("DOMContentLoaded", () => {
         let total = 0;
 
         cart.forEach((item, index) => {
+            const discountedPrice = item.price - (item.price * item.discount / 100);
             const row = document.createElement("tr");
             row.innerHTML = `
-            <td class="item-name">${item.name}</td>
-            <td>${item.quantity}</td>
-            <td class="item-price">$${(item.price * item.quantity).toFixed(2)}</td>
-            <td>
-                <button class="remove-item" data-index="${index}">Quitar</button>
-            </td>
-        `;
+                <td class="item-name">${item.name}</td>
+                <td>${item.quantity}</td>
+                <td class="item-price">$${item.price.toFixed(2)}</td>
+                <td>${item.discount}%</td>
+                <td>$${(discountedPrice).toFixed(2)}</td>
+                <td>$${(discountedPrice * item.quantity).toFixed(2)}</td>
+                <td>
+                    <button class="remove-item" data-index="${index}">Quitar</button>
+                </td>
+            `;
             cartTableBody.appendChild(row);
-            total += item.price * item.quantity;
+            total += discountedPrice * item.quantity;
         });
 
         cartTotal.textContent = `$${total.toFixed(2)}`;
@@ -38,16 +42,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const name = button.dataset.name;
         const price = parseFloat(button.dataset.price);
+        const discount = parseFloat(button.dataset.discount) || 0;
 
         const existingItem = cart.find(item => item.name === name);
 
         if (existingItem) {
             existingItem.quantity += 1;
         } else {
-            cart.push({ name, price, quantity: 1 });
+            cart.push({ name, price, discount, quantity: 1 });
         }
 
-        console.log(`Producto añadido: ${name}, Precio: ${price}`);
+        console.log(`Producto añadido: ${name}, Precio: ${price}, Descuento: ${discount}%`);
         updateCart();
         cartModal.classList.remove("hidden");
     }
