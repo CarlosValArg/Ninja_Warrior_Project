@@ -28,7 +28,7 @@ describe('Validaciones del formulario', function () {
     let emailVacio = await driver.findElement(By.id('email')).getAttribute('value');
     let mensajeVacio = await driver.findElement(By.id('mensaje')).getAttribute('value');
     
-    assert.strictEqual(nombreVacio, '', 'El campo nombre no se limpió correctamente');
+    assert.strictEqual(nombreVacio, '', 'El campo de nombre no se limpió correctamente');
     assert.strictEqual(apellidosVacio, '', 'El campo apellidos no se limpió correctamente');
     assert.strictEqual(edadVacio, '', 'El campo edad no se limpió correctamente');
     assert.strictEqual(emailVacio, '', 'El campo email no se limpió correctamente');

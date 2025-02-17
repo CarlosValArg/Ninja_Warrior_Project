@@ -15,7 +15,6 @@ describe('Validaciones del formulario', function () {
         await driver.get('http://127.0.0.1:5501/tienda.html');
 
         let botonAgregarCarrito = await driver.wait(until.elementLocated(By.css('.info-container .add-to-cart')), 5000);
-        await driver.wait(until.elementIsVisible(botonAgregarCarrito), 5000);
 
         await botonAgregarCarrito.click();
 
@@ -25,10 +24,10 @@ describe('Validaciones del formulario', function () {
         let articulosCarrito = await driver.findElements(By.css('.cart-items tbody tr'));
         assert.strictEqual(articulosCarrito.length, 1, 'El producto no fue añadido correctamente');
 
-        let removeButton = await driver.wait(until.elementLocated(By.css('.cart-items tbody tr td .remove-item')), 5000);
-        await driver.wait(until.elementIsVisible(removeButton), 5000);
+        let botonQuitar = await driver.wait(until.elementLocated(By.css('.cart-items tbody tr td .remove-item')), 5000);
+        await driver.wait(until.elementIsVisible(botonQuitar), 5000);
 
-        await removeButton.click();
+        await botonQuitar.click();
 
         await driver.wait(async () => {
             let articulosActualizadosCarrito = await driver.findElements(By.css('.cart-items tbody tr'));
